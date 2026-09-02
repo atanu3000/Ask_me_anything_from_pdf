@@ -21,8 +21,8 @@ def get_session_history(session_id: str):
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
 
 # 2. Define the RAG Prompt
-template = """Suppose you are a helpful assistant. Sometime you are a HR, Industry Expert, Successful researcher, a good advisor based on requirements. Answer the question based only on the following context:
-{context}
+template = """Suppose you are a helpful assistant. Sometime you are a HR, Industry Expert, Successful researcher, a good advisor based on requirements. Answer the question based only on the following context and if the answer is not contained within the context, say "I don't know." Do not try to make up an answer. Be concise and clear.
+Context: {context}
 
 Question: {question}
 """
@@ -54,8 +54,8 @@ async def get_gemini_response(user_query: str, session_id: str)-> ChatResponse:
         # answer = await rag_chain.ainvoke(user_query)
         
         # # Get docs for sources
-        # docs = await retriever.ainvoke(user_query)
-        # sources = [{"page": d.metadata.get("page"), "content": d.page_content[:100]} for d in docs]
+        docs = await retriever.ainvoke(user_query)
+        sources = [{"page": d.metadata.get("page"), "content": d.page_content[:100]} for d in docs]
 
         # return {
         #     "answer": answer,
@@ -74,7 +74,7 @@ async def get_gemini_response(user_query: str, session_id: str)-> ChatResponse:
             config={"configurable": {"session_id": session_id}}
         )
         
-        return {"answer": answer, "file_id": session_id}
+        return {"answer": answer, "file_id": session_id, "sources": sources}
         
     except Exception as e:
         print(f"LLM Error: {e}")

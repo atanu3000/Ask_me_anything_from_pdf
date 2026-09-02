@@ -12,6 +12,10 @@ __pycache__
 venv/
 env/
 
+# Ignore Windows folder metadata files
+desktop.ini
+**/desktop.ini
+
 # Ignore IDE specific files
 .vscode/
 .idea/

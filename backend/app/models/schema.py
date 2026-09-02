@@ -12,7 +12,7 @@ class Source(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
-    # sources: List[Source]
+    sources: List[Source]
     file_id: str
     
 class UploadResponse(BaseModel):

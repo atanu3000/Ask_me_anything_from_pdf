@@ -81,3 +81,6 @@ async def clear_session(file_id: str):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=True)
+
+# To run the app, use the following command in your terminal:
+# ...\LuminaPDF\backend> uvicorn app.main:app --reload

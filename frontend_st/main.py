@@ -4,6 +4,9 @@ from utils import check_backend_health, upload_pdf, ask_question, delete_context
 # Must be the first Streamlit command
 st.set_page_config(page_title="LuminaPDF", layout="centered")
 
+st.title("📄 LuminaPDF")
+st.subheader("Ask Me Anything From PDF")
+
 # --- WAKE UP BACKEND ---
 if "backend_warm" not in st.session_state:
     with st.spinner("Waking up AI Engine..."):
@@ -29,10 +32,6 @@ if "file_id" not in st.session_state:
     st.session_state.file_id = None
 if "last_uploaded" not in st.session_state:
     st.session_state.last_uploaded = None
-
-
-st.title("📄 LuminaPDF")
-st.subheader("Ask Me Anything From PDF")
 
 # --- AUTO-INDEXING PDF UPLOADER ---
 uploaded_file = st.file_uploader(

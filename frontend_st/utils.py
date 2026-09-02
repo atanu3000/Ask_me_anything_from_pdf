@@ -3,7 +3,7 @@ import streamlit as st
 
 # Update this to your Vercel URL once deployed
 # BASE_URL = "http://127.0.0.1:8000" 
-BASE_URL = "https://ask-me-anything-from-pdf.onrender.com/" 
+BASE_URL = "https://ask-me-anything-from-pdf.onrender.com" 
 
 def check_backend_health():
     """Wakes up the Vercel serverless function."""
